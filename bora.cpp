@@ -1,42 +1,44 @@
-#include <iostream>
-#include <string.h>
+#include <stdio.h>
 
-using namespace std;
-
-void flush_in() {
-	int ch;
-	while ((ch = fgetc(stdin)) != EOF && ch != '\n') {}
-}
 struct Course {
-	char course_name[50];
-	int grade;
+    char name[50];
+    int grade;
 };
 
-struct Student{
-	char name[50];
-	int id;
-	struct Course curso[3];
+struct Student {
+    char name[50];
+    int id;
+    struct Course courses[3];
 };
 
 int main() {
-	
-	struct Student student;
+    struct Student student;
 
-	printf("Diga me o seu nome: ");
-	gets_s(student.name);
+    printf("Enter name: ");
+    scanf("%s", student.name);
 
-	printf("Diga me o seu ID: ");
-	scanf_s("%d", &student.id);
+    printf("Enter ID: ");
+    scanf("%d", &student.id);
 
-	for (size_t i = 1; i < 4; i++)
-	{
-		flush_in();
-		printf("\n---Curso %d---\n", i);
-		printf("Diga me o nome do curso: ");
-		gets_s(student.curso[i].course_name);
+    for (int i = 0; i < 3; i++) {
+        printf("Enter course name: ");
+        scanf("%s", student.courses[i].name);
 
-		printf("\nDiga me a sua nota: ");
-		scanf_s("%d", &student.curso[i].grade);
-	}
-	return 0;
+        printf("Enter grade: ");
+        scanf("%d", &student.courses[i].grade);
+    }
+
+    printf("\nStudent Information:\n");
+    printf("Name: %s\n", student.name);
+    printf("ID: %d\n", student.id);
+
+    float total = 0;
+    for (int i = 0; i < 3; i++) {
+        printf("%s: %d\n", student.courses[i].name, student.courses[i].grade);
+        total += student.courses[i].grade;
+    }
+    float average = total / 3.0;
+    printf("Average Grade: %.2f\n", average);
+
+    return 0;
 }
