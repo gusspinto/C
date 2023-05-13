@@ -1,44 +1,44 @@
 #include <stdio.h>
 
-struct Course {
-    char name[50];
+struct Ginasio {
+    int preco;
     int grade;
 };
 
-struct Student {
-    char name[50];
-    int id;
-    struct Course courses[3];
+struct Luz {
+    int preco;
+    int grade;
+};
+
+struct Agua {
+    int preco;
+    int grade;
+};
+struct Contas {
+    struct Ginasio ginasio;
+    struct Luz luz;
+    struct Agua agua;
 };
 
 int main() {
-    struct Student student;
+    struct Contas contas;
+    int saldo;
+    char name[10], pass[10];
 
     printf("Enter name: ");
-    scanf("%s", student.name);
+    gets_s(name);
+    printf("Enter password: ");
+    gets_s(pass);
 
-    printf("Enter ID: ");
-    scanf("%d", &student.id);
+    printf("A CONFIRMAR DADOS...");
+    printf("Press enter to continue: ");
 
-    for (int i = 0; i < 3; i++) {
-        printf("Enter course name: ");
-        scanf("%s", student.courses[i].name);
 
-        printf("Enter grade: ");
-        scanf("%d", &student.courses[i].grade);
+    printf("%d", name);
+    for (size_t i = 0; i < sizeof(pass); i++)
+    {
+        printf("%d", pass);
     }
 
-    printf("\nStudent Information:\n");
-    printf("Name: %s\n", student.name);
-    printf("ID: %d\n", student.id);
 
-    float total = 0;
-    for (int i = 0; i < 3; i++) {
-        printf("%s: %d\n", student.courses[i].name, student.courses[i].grade);
-        total += student.courses[i].grade;
-    }
-    float average = total / 3.0;
-    printf("Average Grade: %.2f\n", average);
-
-    return 0;
 }
